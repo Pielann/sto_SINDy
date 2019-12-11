@@ -6,7 +6,7 @@ import::here(sSINDy,sSINDy_new,order_coef,error_compute,gene_poly_data,
 
 # Try to fit Geometric-Brownian motion which start at x0=1
 # dX = rX dt + sigma X dB
-end_time=1 #The end time of the Brownian motion
+end_time=10 #The end time of the Brownian motion
 n_times=1000 # How many time step b/t [0,end_time]
 
 X=sde::GBM(x=1, r=1,sigma=1, T=end_time, N=n_times) # Generate BM

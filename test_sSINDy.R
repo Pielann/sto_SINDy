@@ -1,9 +1,7 @@
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-import::here(sSINDy,sSINDy_new,order_coef,error_compute,
+import::here(sSINDy,order_coef,error_compute,
              .from = 'sSINDy.R')
 
 library(testthat)
-
 
 #Set up fake data
 size_data=100
@@ -43,6 +41,7 @@ test_that("sSINDy should at least closed to the correct model", {
   
   for(i in 3:7)
     expect_lt(mod$cv_error[i],1e-10)
+  
 })
 
 

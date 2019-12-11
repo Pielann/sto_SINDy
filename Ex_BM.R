@@ -3,7 +3,6 @@ import::here(sSINDy,sSINDy_new,order_coef,error_compute,gene_poly_data,
              .from = 'sSINDy.R')
 
 
-
 # Try to fit Brownian motion which start at x0=10
 end_time=1 #The end time of the Brownian motion
 n_times=1000 # How many time step b/t [0,end_time]
@@ -47,7 +46,7 @@ simulate_BM_drift=function(fun_sim,end_T,n_times,k_fold,order_poly=3){
 }
 
 coef_sim=replicate(1000,simulate_BM_drift(sde::BM,1,100,10))
-apply(coef_sim,1,summary)
+apply(coef_sim,1,quantile,prob=c(0.025,0.975))
 sum(coef_sim!=0) # really few components is zero
 
 
