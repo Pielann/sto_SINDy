@@ -1,11 +1,10 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-import::here(sSINDy,sSINDy_lm,sSINDy_lm_vectorized,order_coef,
-             error_compute,error_compute_lm,.from = 'sSINDy.R')
-source(file="sSINDy.R",echo=FALSE)
-
+import::here(sSINDy,sSINDy_lm_vectorized,order_coef,
+             error_compute,.from = 'sSINDy.R')
 library(microbenchmark)
 
-size_data=50
+
+size_data=1000
 interval=100
 #Creat a data from unifom [-100,100]
 x1=runif(size_data,min=-interval,max=interval)
@@ -28,9 +27,8 @@ cv_group=sample(rep(1:k_fold,size_data/k_fold),size_data)
 
 
 microbenchmark(
-  sSINDy(X,y_noise,2),
-  sSINDy_lm(X,y_noise,2),
-  sSINDy_lm_vectorized(X,y_noise,2)
+  sSINDy(X,y,k_fold),
+  sSINDy_lm_vectorized(X,y,k_fold)
 )
 
 
@@ -46,3 +44,6 @@ microbenchmark(
   error_compute(data_X,data_y,cv_group,k_fold),
   error_compute_MASS(data_X,data_y,cv_group,k_fold) 
 )
+
+
+
